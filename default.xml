@@ -15,14 +15,14 @@
 
   <default remote="master" revision="master"/>
 
-  <project name="rust_camkes.git" path="tools/camkes" >
+  <project name="rs_camkes.git" path="tools/camkes" >
     <linkfile dest="Makefile" src="toplevel.mk"/>
     <linkfile dest="Kbuild" src="Kbuild"/>
     <linkfile dest="camkes_README.md" src="docs/index.md"/>
     <linkfile dest="libs/libsel4camkes" src="libsel4camkes"/>
     <linkfile dest="libs/libsel4muslccamkes" src="libsel4muslccamkes"/>
   </project>
-  <project name="rust_camkes-vm.git" path="projects/vm" >
+  <project name="rs_camkes-vm.git" path="projects/vm" >
     <linkfile dest="Kconfig" src="Kconfig"/>
     <linkfile dest="configs" src="configs"/>
     <linkfile dest="libs/libsel4cxx" src="libsel4cxx"/>
@@ -43,22 +43,22 @@
     <linkfile dest="projects/vm/liblwip/include/lwip/lwipopts.h" src="lwipopts.h"/>
     <linkfile dest="setup_rust_env.sh" src="setup_rust_env.sh"/>
   </project>
-  <project name="rust_capdl.git" path="projects/capdl" >
+  <project name="rs_capdl.git" path="projects/capdl" >
     <linkfile dest="apps/capdl-loader-experimental" src="capdl-loader-app"/>
     <linkfile dest="tools/capDL" src="capDL-tool"/>
     <linkfile dest="tools/python-capdl" src="python-capdl-tool"/>
   </project>
-  <project name="rust_global-components.git" path="projects/global-components" />
-  <project name="rust_musllibc.git" path="libs/libmuslc" />
-  <project name="rust_picotcp.git" path="projects/picotcp" >
+  <project name="rs_global-components.git" path="projects/global-components" />
+  <project name="rs_musllibc.git" path="libs/libmuslc" />
+  <project name="rs_picotcp.git" path="projects/picotcp" >
     <linkfile dest="libs/libpicotcp/modules" src="modules"/>
     <linkfile dest="libs/libpicotcp/stack" src="stack"/>
     <linkfile dest="libs/libpicotcp/include" src="include"/>
   </project>
-  <project name="rust_seL4.git" path="kernel" >
+  <project name="rs_seL4.git" path="kernel" >
     <linkfile dest="libs/libsel4" src="libsel4"/>
   </project>
-  <project name="rust_seL4_libs.git" path="projects/seL4_libs" >
+  <project name="rs_seL4_libs.git" path="projects/seL4_libs" >
     <linkfile dest="libs/libsel4allocman" src="libsel4allocman"/>
     <linkfile dest="libs/libsel4bench" src="libsel4bench"/>
     <linkfile dest="libs/libsel4debug" src="libsel4debug"/>
@@ -73,12 +73,12 @@
     <linkfile dest="libs/libsel4vmm" src="libsel4vmm"/>
     <linkfile dest="libs/libsel4vspace" src="libsel4vspace"/>
   </project>
-  <project name="rust_seL4_tools.git" path="projects/tools" >
+  <project name="rs_seL4_tools.git" path="projects/tools" >
     <linkfile dest="tools/kbuild" src="kbuild-tool"/>
     <linkfile dest="tools/common" src="common-tool"/>
     <linkfile dest="tools/elfloader" src="elfloader-tool"/>
   </project>
-  <project name="rust_util_libs.git" path="projects/util_libs" >
+  <project name="rs_util_libs.git" path="projects/util_libs" >
     <linkfile dest="libs/libcpio" src="libcpio"/>
     <linkfile dest="libs/libelf" src="libelf"/>
     <linkfile dest="libs/libethdrivers" src="libethdrivers"/>
@@ -90,6 +90,6 @@
     <linkfile dest="libs/libpicotcp/Makefile" src="libpicotcp/Makefile"/>
     <linkfile dest="libs/libpicotcp/pico_defines.h" src="libpicotcp/picoopts.h"/>
   </project>
-  <project name="rust_rustwall.git" path="projects/vm/components/Firewall/rustwall" />
-  <project name="rust_smoltcp.git" path="projects/smoltcp" />
+  <project name="rs_rustwall.git" path="projects/vm/components/Firewall/rustwall" />
+  <project name="rs_smoltcp.git" path="projects/smoltcp" />
 </manifest>
