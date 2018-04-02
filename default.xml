@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<re?xml version="1.0" encoding="UTF-8"?>
 <!--
      Copyright 2018, Data61
      Commonwealth Scientific and Industrial Research Organisation (CSIRO)
@@ -14,8 +14,6 @@
   <remote fetch="." name="master"/>
 
   <default remote="master" revision="master"/>
-
-  <remote fetch="." name="passthrough" revision="passthrough"/>
 
   <project name="rs_camkes.git" path="tools/camkes" >
     <linkfile dest="Makefile" src="toplevel.mk"/>
@@ -92,6 +90,6 @@
     <linkfile dest="libs/libpicotcp/Makefile" src="libpicotcp/Makefile"/>
     <linkfile dest="libs/libpicotcp/pico_defines.h" src="libpicotcp/picoopts.h"/>
   </project>
-  <project name="rs_rustwall.git" path="projects/vm/components/Firewall/rustwall" branch="passthrough" />
+  <project name="rs_rustwall.git" path="projects/vm/components/Firewall/rustwall" revision="passthrough" />
   <project name="rs_smoltcp.git" path="projects/smoltcp" remote="passthrough"/>
 </manifest>
