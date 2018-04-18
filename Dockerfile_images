@@ -1,0 +1,64 @@
+FROM centos:7
+
+# install the dependencies that we can get from CentOS
+RUN yum install -y git gcc gcc-c++ make curl bzip2 which \
+  clang CUnit-devel sqlite-devel openssl-devel unzip python-devel vim-common
+
+# Fetch a newer version of cmake (as the one CentOS gives us is too
+# old)
+RUN cd /opt && \
+  curl -O https://cmake.org/files/v3.11/cmake-3.11.0.tar.gz && \
+  tar -xvvf cmake-3.11.0.tar.gz && \
+  cd cmake-3.11.0 && \
+  ./bootstrap && \
+  make && \
+  make install
+
+# Set up ccache as well
+RUN cd /opt && \
+  curl -O https://www.samba.org/ftp/ccache/ccache-3.4.2.tar.bz2 && \
+  tar -xvvf ccache-3.4.2.tar.bz2 && \
+  cd ccache-3.4.2 && \
+  ./configure && \
+  make && \
+  make install
+
+# Get a reasonably recent version of pip
+RUN cd /opt && \
+  curl "https://bootstrap.pypa.io/get-pip.py" -o "get-pip.py" && \
+  python2 get-pip.py
+# and install some stuff
+RUN pip install six tempita future ply plyplus pyelftools orderedset jinja2
+
+# We need a somewhat newer gcc than ships with CentOS, so get that
+RUN yum install -y centos-release-scl
+RUN yum install -y devtoolset-7-gcc
+
+# And we need Ninja, which we can also build
+RUN cd /opt && \
+  curl -LO "https://github.com/ninja-build/ninja/releases/download/v1.8.2/ninja-linux.zip" && \
+  unzip ninja-linux.zip && mv ninja /bin/ninja
+
+# Set up Rust and Cargo
+RUN curl https://sh.rustup.rs -sSf >/opt/rustup.sh && sh /opt/rustup.sh -y
+# Set up Stack
+RUN curl -sSL https://get.haskellstack.org/ | sh
+# Set up Google's repo tool
+RUN git clone https://android.googlesource.com/tools/repo /opt/repo && \
+    ln -s /opt/repo/repo /bin/repo
+
+# Grab a few miscellaneous other dependencies we didn't get before
+RUN git clone git://git.joeyh.name/moreutils /opt/moreutils && ln -s /opt/moreutils/sponge /bin/sponge
+RUN yum install -y CUnit-devel
+
+# Some important environment variables (otherwise we get
+# encoding-related complaints from some of the tools)
+ENV LANG=en_US.UTF-8
+ENV LOCALE=en_US.UTF-8
+ENV RUST_TARGET_PATH=/opt/vm/tools/common
+ENV PATH=/root/.cargo/bin:$PATH
+
+# And finally, get our actual repo, configure, and build!
+RUN mkdir /opt/vm && cd /opt/vm && repo init -u https://github.com/GaloisInc/rustwall_vm.git && repo sync
+RUN cd /opt/vm && ./setup_rust_env.sh && make cma34cr_centos_defconfig
+RUN cd /opt/vm && scl enable devtoolset-7 make
