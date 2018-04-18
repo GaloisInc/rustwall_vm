@@ -84,9 +84,19 @@ The images are x86_64, and currently require appropriate hardware to run (no QEM
 You can build the images using attached dockerfile. This takes a while, because the build compiles a custom
 version of rust compiler from scratch. All you need to do is:
 ```
-sudo docker build -f Dockerfile .
+sudo docker build -f Dockerfile_compiler .
 ```
-and the docker image is build. That dockerfile has already built the Rustwall demo! Annoyingly,
+and the docker image is build. 
+
+
+To build seL4 images, use:
+
+```
+sudo docker build -f Dockerfile_images .
+```
+
+
+That dockerfile has already built the Rustwall demo! Annoyingly,
 Docker doesn't let you extract files directly from images, but only
 from 'containers' (i.e. images that have already been run), so to
 extract the compiled artifacts out of the Dockerfile, you need these
