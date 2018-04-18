@@ -50,4 +50,31 @@ EOF
 echo " done."
 ```
 
+## Installation
 
+First, use repo to set up your local copy:
+```
+mkdir test
+cd test
+repo init -u https://github.com/GaloisInc/rustwall_vm
+repo sync
+```
+
+Initialize Rust environment with:
+```
+./setup_rust_env.sh
+```
+
+and then you can build an image with firewall for CMA34CR with:
+
+```
+make clean; make cma34cr_centos_defconfig; make silentoldconfig; make;
+```
+
+If everything goes well, you should have two images:
+```
+ls images/
+capdl-loader-experimental-image-x86_64-pc99  kernel-x86_64-pc99
+```
+
+The images are x86_64, and currently require appropriate hardware to run (no QEMU yet, sorry).
