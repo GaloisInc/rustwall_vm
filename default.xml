@@ -30,7 +30,7 @@
   </project>
 
   <!-- swap C firewall for its Rust version -->
-  <project remote="galois" name="rs_camkes-vm.git" path="projects/vm" >
+  <project remote="galois" name="rs_camkes-vm.git" path="projects/vm"  revision="master">
     <linkfile dest="Kconfig" src="Kconfig"/>
     <linkfile dest="configs" src="configs"/>
     <linkfile dest="libs/libsel4cxx" src="libsel4cxx"/>
@@ -62,7 +62,7 @@
   <project remote="galois" name="rs_rustwall.git" path="projects/vm/components/Firewall/rustwall" revision="passthrough" />
 
   <!-- link to specific version of libc inside smoltcp -->
-  <project remote="galois" name="rs_smoltcp.git" path="projects/smoltcp"/>
+  <project remote="galois" name="rs_smoltcp.git" path="projects/smoltcp" revision="master">
 
   
   <!--
