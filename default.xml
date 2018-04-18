@@ -69,32 +69,32 @@
       NO CHANGES BELOW
   -->
   <!-- no change -->
-  <project name="capdl.git" path="projects/capdl" >
+  <project name="capdl.git" path="projects/capdl" revision="9608a16b87fe9310c4dd58c1e8d7d8d40d6857e5" upstream="master">
     <linkfile dest="apps/capdl-loader-experimental" src="capdl-loader-app"/>
     <linkfile dest="tools/capDL" src="capDL-tool"/>
     <linkfile dest="tools/python-capdl" src="python-capdl-tool"/>
   </project>
 
   <!-- no change -->
-  <project name="global-components.git" path="projects/global-components" />
+ <project name="global-components.git" path="projects/global-components" remote="SEL4PROJ" revision="8e2ef7eac3e83585888013ab57c44a1b1620a641" upstream="master"/>
 
   <!-- no change -->
-  <project name="musllibc.git" path="libs/libmuslc" />
+ <project name="musllibc.git" path="libs/libmuslc" revision="f58dacf44a679a2d7c10fbb8d8bc8f58e2123791" upstream="sel4"/>
 
   <!-- no change -->
-  <project name="picotcp.git" path="projects/picotcp" >
+ <project name="picotcp.git" path="projects/picotcp" remote="SEL4PROJ" revision="7f12f2949f44b1de04e9d89407642a9efee878c6" upstream="master">
     <linkfile dest="libs/libpicotcp/modules" src="modules"/>
     <linkfile dest="libs/libpicotcp/stack" src="stack"/>
     <linkfile dest="libs/libpicotcp/include" src="include"/>
   </project>
 
   <!-- no change -->
-  <project name="seL4.git" path="kernel" >
+  <project name="seL4.git" path="kernel" revision="7b4a42c427d12f42b3c35e203c28f9f9ac1271df" upstream="master">
     <linkfile dest="libs/libsel4" src="libsel4"/>
   </project>
 
   <!-- no change -->
-  <project name="seL4_libs.git" path="projects/seL4_libs" >
+  <project name="seL4_libs" path="projects/seL4_libs" revision="494cd46c8497f50036b5e517720e1604affe6b10" upstream="master">
     <linkfile dest="libs/libsel4allocman" src="libsel4allocman"/>
     <linkfile dest="libs/libsel4bench" src="libsel4bench"/>
     <linkfile dest="libs/libsel4debug" src="libsel4debug"/>
@@ -111,7 +111,7 @@
   </project>
 
   <!-- no change -->
-  <project name="util_libs.git" path="projects/util_libs" >
+  <project name="util_libs.git" path="projects/util_libs" revision="f667cfa2f8aae95db65a991ba7dfedf75cb6e46e" upstream="master">
     <linkfile dest="libs/libcpio" src="libcpio"/>
     <linkfile dest="libs/libelf" src="libelf"/>
     <linkfile dest="libs/libethdrivers" src="libethdrivers"/>
