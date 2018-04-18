@@ -78,3 +78,24 @@ capdl-loader-experimental-image-x86_64-pc99  kernel-x86_64-pc99
 ```
 
 The images are x86_64, and currently require appropriate hardware to run (no QEMU yet, sorry).
+
+
+## Docker
+You can build the images using attached dockerfile. All you need to do is:
+```
+sudo docker build -f Dockerfile .
+```
+and the docker image is build. That dockerfile has already built the Rustwall demo! Annoyingly,
+Docker doesn't let you extract files directly from images, but only
+from 'containers' (i.e. images that have already been run), so to
+extract the compiled artifacts out of the Dockerfile, you need these
+slightly hairier commands:
+
+```
+  docker cp "$(docker create $IMAGE):/opt/vm/images/kernel-x86_64-pc99" .
+  docker cp "$(docker create $IMAGE):/opt/vm/images/capdl-loader-experimental-image-x86_64-pc99" .
+```
+Where `$IMAGE` is whatever you named the image during the Docker build
+step. (The `docker create` command runs an image to create a
+container, and then `docker cp` grabs a file from the container and
+puts it on the file system.)
