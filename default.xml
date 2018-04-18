@@ -15,6 +15,7 @@
 
   <default remote="master" revision="master"/>
 
+  <!-- this needed for Camkes Rust generation -->
   <project name="rs_camkes.git" path="tools/camkes" >
     <linkfile dest="Makefile" src="toplevel.mk"/>
     <linkfile dest="Kbuild" src="Kbuild"/>
@@ -22,6 +23,8 @@
     <linkfile dest="libs/libsel4camkes" src="libsel4camkes"/>
     <linkfile dest="libs/libsel4muslccamkes" src="libsel4muslccamkes"/>
   </project>
+
+  <!-- rust env script, select the compiler based on the current os -->
   <project name="rs_camkes-vm.git" path="projects/vm" >
     <linkfile dest="Kconfig" src="Kconfig"/>
     <linkfile dest="configs" src="configs"/>
@@ -43,22 +46,36 @@
     <linkfile dest="projects/vm/liblwip/include/lwip/lwipopts.h" src="lwipopts.h"/>
     <linkfile dest="setup_rust_env.sh" src="setup_rust_env.sh"/>
   </project>
-  <project name="rs_capdl.git" path="projects/capdl" >
+
+
+  <!-- no change -->
+  <project name="capdl.git" path="projects/capdl" >
     <linkfile dest="apps/capdl-loader-experimental" src="capdl-loader-app"/>
     <linkfile dest="tools/capDL" src="capDL-tool"/>
     <linkfile dest="tools/python-capdl" src="python-capdl-tool"/>
   </project>
-  <project name="rs_global-components.git" path="projects/global-components" />
-  <project name="rs_musllibc.git" path="libs/libmuslc" />
-  <project name="rs_picotcp.git" path="projects/picotcp" >
+
+  <!-- no change -->
+  <project name="global-components.git" path="projects/global-components" />
+
+
+  <!-- no change -->
+  <project name="musllibc.git" path="libs/libmuslc" />
+
+  <!-- no change -->
+  <project name="picotcp.git" path="projects/picotcp" >
     <linkfile dest="libs/libpicotcp/modules" src="modules"/>
     <linkfile dest="libs/libpicotcp/stack" src="stack"/>
     <linkfile dest="libs/libpicotcp/include" src="include"/>
   </project>
-  <project name="rs_seL4.git" path="kernel" >
+
+  <!-- no change -->
+  <project name="seL4.git" path="kernel" >
     <linkfile dest="libs/libsel4" src="libsel4"/>
   </project>
-  <project name="rs_seL4_libs.git" path="projects/seL4_libs" >
+
+  <!-- no change -->
+  <project name="seL4_libs.git" path="projects/seL4_libs" >
     <linkfile dest="libs/libsel4allocman" src="libsel4allocman"/>
     <linkfile dest="libs/libsel4bench" src="libsel4bench"/>
     <linkfile dest="libs/libsel4debug" src="libsel4debug"/>
@@ -73,12 +90,16 @@
     <linkfile dest="libs/libsel4vmm" src="libsel4vmm"/>
     <linkfile dest="libs/libsel4vspace" src="libsel4vspace"/>
   </project>
+
+  <!-- this needed to properly tell Cargo what to do -->
   <project name="rs_seL4_tools.git" path="projects/tools" >
     <linkfile dest="tools/kbuild" src="kbuild-tool"/>
     <linkfile dest="tools/common" src="common-tool"/>
     <linkfile dest="tools/elfloader" src="elfloader-tool"/>
   </project>
-  <project name="rs_util_libs.git" path="projects/util_libs" >
+
+  <!-- no change -->
+  <project name="util_libs.git" path="projects/util_libs" >
     <linkfile dest="libs/libcpio" src="libcpio"/>
     <linkfile dest="libs/libelf" src="libelf"/>
     <linkfile dest="libs/libethdrivers" src="libethdrivers"/>
@@ -90,6 +111,10 @@
     <linkfile dest="libs/libpicotcp/Makefile" src="libpicotcp/Makefile"/>
     <linkfile dest="libs/libpicotcp/pico_defines.h" src="libpicotcp/picoopts.h"/>
   </project>
+
+  <!-- replace libc -->
   <project name="rs_rustwall.git" path="projects/vm/components/Firewall/rustwall" revision="passthrough" />
+
+  <!-- link to specific version of libc inside smoltcp -->
   <project name="rs_smoltcp.git" path="projects/smoltcp"/>
 </manifest>
