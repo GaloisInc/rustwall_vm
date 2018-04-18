@@ -81,7 +81,8 @@ The images are x86_64, and currently require appropriate hardware to run (no QEM
 
 
 ## Docker
-You can build the images using attached dockerfile. All you need to do is:
+You can build the images using attached dockerfile. This takes a while, because the build compiles a custom
+version of rust compiler from scratch. All you need to do is:
 ```
 sudo docker build -f Dockerfile .
 ```
