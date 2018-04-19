@@ -59,7 +59,7 @@
   </project>
 
   <!-- replce libc in Ruswall's Cargo.toml -->
-  <project remote="galois" name="rs_rustwall.git" path="projects/vm/components/Firewall/rustwall" revision="passthrough" />
+  <project remote="galois" name="rustwall.git" path="projects/vm/components/Firewall/rustwall" revision="no_std" />
 
   <!-- link to specific version of libc inside smoltcp -->
   <project remote="galois" name="rs_smoltcp.git" path="projects/smoltcp" revision="master"/>
