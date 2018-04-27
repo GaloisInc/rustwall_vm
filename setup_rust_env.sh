@@ -13,7 +13,7 @@ stdbuf -oL printf "Fetching sel4-aware Rust compiler..."
     rm -rf rust &&
         mkdir rust &&
         cd rust &&
-        curl -O https://github.com/GaloisInc/sel4-rust/releases/download/$TOOLCHAIN_VERSION/$COMPILER &&
+        curl -OL https://github.com/GaloisInc/sel4-rust/releases/download/$TOOLCHAIN_VERSION/$COMPILER &&
         tar -xf $COMPILER
 ) >/dev/null 2>&1
 echo " done."
@@ -23,7 +23,7 @@ stdbuf -oL printf "Fetching sel4 sysroot..."
     rm -rf sysroot &&
         mkdir sysroot &&
         cd sysroot &&
-        curl -O https://github.com/GaloisInc/sel4-rust/releases/download/$TOOLCHAIN_VERSION/x86_64-sel4-robigalia.tar.gz &&
+        curl -OL https://github.com/GaloisInc/sel4-rust/releases/download/$TOOLCHAIN_VERSION/x86_64-sel4-robigalia.tar.gz &&
         tar -xf x86_64-sel4-robigalia.tar.gz
 ) >/dev/null 2>&1
 echo " done."
