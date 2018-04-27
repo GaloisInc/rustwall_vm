@@ -50,7 +50,7 @@
     <linkfile dest="apps/cma34cr_ubuntu" src="apps/cma34cr_ubuntu"/>
     <linkfile dest="apps/cma34cr_centos" src="apps/cma34cr_centos"/>
     <linkfile dest="apps/cma34cr_vchan" src="apps/cma34cr_vchan"/>
-    <linkfile dest="apps/cxx" src="apps/cxx"/>
+    <linkfile dest="apps/simple" src="apps/simple"/>
     <linkfile dest="apps/cma34cr_picotcp" src="apps/cma34cr_picotcp"/>
     <linkfile dest="README.md" src="README.md"/>
     <linkfile dest="projects/vm/liblwip/include/lwip/lwipopts.h" src="lwipopts.h"/>

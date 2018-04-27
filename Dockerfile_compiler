@@ -38,4 +38,4 @@ RUN cd /opt/rust/build/x86_64-unknown-linux-gnu/stage2/ && \
 
 # and grab the compiler needed
 RUN cd /opt/rust/build/x86_64-unknown-linux-gnu/stage2/ && \
-    tar -cf /opt/rust.tar.gz bin/* lib/*.so
+    tar -cf /opt/rust.tar.gz bin/* lib/*
