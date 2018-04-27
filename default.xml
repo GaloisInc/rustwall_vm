@@ -26,7 +26,6 @@
     <linkfile dest="libs/libsel4camkes" src="libsel4camkes"/>
     <linkfile dest="libs/libsel4muslccamkes" src="libsel4muslccamkes"/>
     <linkfile dest="README.md" src="docs/index.md"/>
-    <linkfile dest="setup_rust_env.sh" src="setup_rust_env.sh"/>
   </project>
 
   <!-- this is needed for setting up the rust environment -->
@@ -57,7 +56,8 @@
   </project>
 
   <!-- this is needed to properly tell Cargo what to do -->
-  <project remote="galois" name="seL4_tools.git" path="projects/seL4_tools" revision="rust">
+  <!--project remote="galois" name="seL4_tools.git" path="projects/seL4_tools" revision="rust"-->
+  <project remote="galois" name="rs_seL4_tools.git" path="projects/seL4_tools" revision="master">
     <linkfile dest="tools/common" src="common-tool"/>
     <linkfile dest="tools/elfloader" src="elfloader-tool"/>
     <linkfile dest="tools/kbuild" src="kbuild-tool"/>
