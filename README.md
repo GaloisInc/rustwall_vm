@@ -81,7 +81,29 @@ capdl-loader-experimental-image-x86_64-pc99  kernel-x86_64-pc99
 
 The images are x86_64, and currently require appropriate hardware to run (no QEMU yet, sorry).
 
+## Simple rust application
+Initialize the repo as described above.
 
+Then select `simple` app:
+```
+ make clean; make x86_simple_defconfig; make silentoldconfig; make;
+```
+
+You end up having two x86-64 targets. To run the simple app from QEMU, type:
+
+```
+qemu-system-x86_64 -m 512 -kernel images/kernel-x86_64-pc99 -initrd images/capdl-loader-experimental-image-x86_64-pc99 --enable-kvm -smp 2 -cpu Nehalem,+vmx -nographic
+```
+
+and you should see:
+
+```
+...
+Starting node #0 with APIC ID 0
+Mapping kernel window is done
+Booting all finished, dropped to user space
+Hello from rust
+```
 ## Docker
 You can build the images using attached dockerfile. This takes a while, because the build compiles a custom
 version of rust compiler from scratch. All you need to do is:
