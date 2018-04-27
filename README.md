@@ -4,9 +4,9 @@
 The small changes various seL4 directories are automatically pulled from GaloisInc's forks (look for `rust` branches).
 On top of that, there are two main parts: rust compiler, and libc for Rust.
 
-- **libc**: For now, we are using a forked version of libc with changes on top: https://github.com/aisamanra/liblibc
-- **rust**: Forked rust compiler with custom changes to support seL4 targets: https://github.com/aisamanra/rust
-- **jemalloc**: dependency of libc, custom version: https://github.com/aisamanra/jemalloc
+- **libc**: For now, we are using a forked version of libc with changes on top: https://github.com/GaloisInc/rs_liblibc
+- **rust**: Forked rust compiler with custom changes to support seL4 targets: https://github.com/GaloisInc/sel4-rust
+- **jemalloc**: dependency of libc, custom version: https://github.com/GaloisInc/rs_jemalloc
 
 Last part is the `setup_rust_env.sh` script for rust environment, currently for x86_64 targets only, downloading a precompiled version of rustc:
 
