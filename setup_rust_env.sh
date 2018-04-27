@@ -13,7 +13,8 @@ stdbuf -oL printf "Fetching sel4-aware Rust compiler..."
     rm -rf rust &&
         mkdir rust &&
         cd rust &&
-        curl -OL https://github.com/GaloisInc/sel4-rust/releases/download/$TOOLCHAIN_VERSION/$COMPILER &&
+        curl -OL https://github.com/GaloisInc/sel4-rust/releases/download/$TOOLCHAIN_VERSION/rust.tar.gz &&
+        mv rust.tar.gz $COMPILER &&
         tar -xf $COMPILER
 ) >/dev/null 2>&1
 echo " done."
