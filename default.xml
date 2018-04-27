@@ -29,6 +29,11 @@
     <linkfile dest="setup_rust_env.sh" src="setup_rust_env.sh"/>
   </project>
 
+  <!-- this is needed for setting up the rust environment -->
+  <project remote="galois" name="rustwall_vm.git" path="/projects/misc">
+    <linkfile dest="setup_rust_env.sh" src="setup_rust_env.sh"/>
+  </project>
+
   <!-- swap C firewall for its Rust version -->
   <project remote="galois" name="rs_camkes-vm.git" path="projects/vm"  revision="master">
     <linkfile dest="Kconfig" src="Kconfig"/>
