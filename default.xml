@@ -30,7 +30,7 @@
   </project>
 
   <!-- this is needed for setting up the rust environment -->
-  <project remote="galois" name="rustwall_vm.git" path="/projects/misc">
+  <project remote="galois" name="rustwall_vm.git" path="projects/misc" revision="master">
     <linkfile dest="setup_rust_env.sh" src="setup_rust_env.sh"/>
   </project>
 
