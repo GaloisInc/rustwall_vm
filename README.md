@@ -82,3 +82,15 @@ Where `$IMAGE` is whatever you named the image during the Docker build
 step. (The `docker create` command runs an image to create a
 container, and then `docker cp` grabs a file from the container and
 puts it on the file system.)
+
+## Rust and std
+In general, memory allocation seems to work, anything above that probably doesn't.
+
+What was tested and works:
+- `std::Box`
+- `std::vec`
+
+What doesn't work:
+- `println` and similar: some kind of a wrapper around seL4's `printf()` is needed, maybe using compatibility crate
+- `std::thread`: has to spawn seL4 threads or something like that
+- `std::sync::Mutex`: might have to be backed by seL4 primitives
