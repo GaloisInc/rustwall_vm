@@ -2,7 +2,11 @@
 
 TOOLCHAIN_VERSION=1.0
 
-COMPILER=rust-ubuntu-x86-64.tar.gz
+if grep -e CentOS </etc/os-release >/dev/null 2>&1; then
+    COMPILER=rust-centos-x86-64.tar.gz
+else
+    COMPILER=rust-ubuntu-x86-64.tar.gz
+fi
 
 stdbuf -oL printf "Fetching sel4-aware Rust compiler..."
 (
