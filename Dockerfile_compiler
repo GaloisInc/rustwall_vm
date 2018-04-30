@@ -25,12 +25,12 @@ ENV TGT=x86_64-sel4-robigalia
 RUN git clone https://github.com/GaloisInc/sel4-rust.git  /opt/rust
 # make sure we have target descriptions for the new targets
 RUN mkdir /opt/targets
-RUN cd /opt/targets && curl -O https://raw.githubusercontent.com/GaloisInc/rs_seL4_tools/master/common-tool/x86_64-sel4-robigalia.json
-RUN cd /opt/targets && curl -O https://raw.githubusercontent.com/GaloisInc/rs_seL4_tools/master/common-tool/i686-sel4-robigalia.json
-RUN cd /opt/targets && curl -O https://raw.githubusercontent.com/GaloisInc/rs_seL4_tools/master/common-tool/arm-sel4-robigalia.json
+RUN cd /opt/targets && curl -O https://raw.githubusercontent.com/GaloisInc/seL4_tools/rust/common-tool/x86_64-sel4-robigalia.json
+RUN cd /opt/targets && curl -O https://raw.githubusercontent.com/GaloisInc/seL4_tools/rust/common-tool/i686-sel4-robigalia.json
+RUN cd /opt/targets && curl -O https://raw.githubusercontent.com/GaloisInc/seL4_tools/rust/common-tool/arm-sel4-robigalia.json
 ENV RUST_TARGET_PATH=/opt/targets
 # and run the build!
 RUN cd /opt/rust && ./x.py build --target=$TGT
 
-# create a tarball
-RUN tar -cf /opt/$TGT.tar.gz /opt/rust/build/x86_64-unknown-linux-gnu/stage2
+# fetch the rlibs needed to assemble the sysroots into a single tarball
+RUN cd /opt/rust/build/x86_64-unknown-linux-gnu && tar -cf /opt/rust-centos-x86-64.tar.gz stage2
