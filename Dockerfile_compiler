@@ -29,13 +29,8 @@ RUN cd /opt/targets && curl -O https://raw.githubusercontent.com/GaloisInc/rs_se
 RUN cd /opt/targets && curl -O https://raw.githubusercontent.com/GaloisInc/rs_seL4_tools/master/common-tool/i686-sel4-robigalia.json
 RUN cd /opt/targets && curl -O https://raw.githubusercontent.com/GaloisInc/rs_seL4_tools/master/common-tool/arm-sel4-robigalia.json
 ENV RUST_TARGET_PATH=/opt/targets
-# and run the builf!
+# and run the build!
 RUN cd /opt/rust && ./x.py build --target=$TGT
 
-# fetch the rlibs needed to assemble the sysroots into a single tarball
-RUN cd /opt/rust/build/x86_64-unknown-linux-gnu/stage2/ && \
-    tar -cf /opt/$TGT.tar.gz lib/rustlib/$TGT/lib/*.rlib
-
-# and grab the compiler needed
-RUN cd /opt/rust/build/x86_64-unknown-linux-gnu/stage2/ && \
-    tar -cf /opt/rust.tar.gz bin/* lib/*
+# create a tarball
+RUN tar -cf /opt/$TGT.tar.gz /opt/rust/build/x86_64-unknown-linux-gnu/stage2
