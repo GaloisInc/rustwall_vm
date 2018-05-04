@@ -3,13 +3,27 @@
 Tested on Ubuntu 16.04 and Qemu 2.12
 
 ## Prerequisites
+Perform these steps before running the seL4 images. Typically you have to do this only once.
+
 
 
 ### Bridge utils
-First, fetch bridge utils: 
-
+1. First, fetch bridge utils: 
 ```
 sudo apt install bridge-utils
+```
+2. Create a bridge for QEMU so it can be accessed from the host machine (or run `brigde_init.sh`)
+```
+sudo brctl addbr br0
+sudo ip addr add 192.168.179.1/24 broadcast 192.168.179.255 dev br0
+sudo ip link set br0 up
+
+sudo ip tuntap add dev tap0 mode tap
+sudo ip link set tap0 up promisc on
+
+sudo brctl addif br0 tap0
+
+sudo dnsmasq --interface=br0 --bind-interfaces --dhcp-range=192.168.179.10,192.168.179.254
 ```
 
 ### Qemu
@@ -65,3 +79,20 @@ On the next reboot, the kernel should be started with the boot parameter.
 To permanently remove it, simply remove the parameter from `GRUB_CMDLINE_LINUX_DEFAULT` and run sudo update-grub again.
 
 To verify your changes, you can see exactly what parameters your kernel booted with by executing `cat /proc/cmdline`.
+
+Make sure you get the following output:
+```
+$ dmesg|grep IOMMU
+[    0.000000] DMAR: IOMMU enabled
+```
+
+
+## Testing
+1. Build the seL4 image with:
+```
+make clean; make cma34cr_centos_defconfig; make silentoldconfig; make;
+```
+2. Run the qemu from the build directory:
+```
+qemu-system-x86_64 -m 1024 -cpu Nehalem,+vmx,+fsgsbase -serial /dev/stdout -vga std -netdev tap,id=t0,ifname=tap0,script=no,downscript=no -device e1000,netdev=t0,id=nic0 --enable-kvm -smp 2 -kernel images/kernel-x86_64-pc99 -initrd images/capdl-loader-experimental-image-x86_64-pc99 -device intel-iommu,intremap=on,caching-mode=on -machine q35,kernel-irqchip=split
+```
