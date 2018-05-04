@@ -34,7 +34,7 @@ Initialize the repo as described above.
 
 Then select `simple` app:
 ```
- make clean; make x86_simple_defconfig; make silentoldconfig; make;
+make clean; make x86_simple_defconfig; make silentoldconfig; make;
 ```
 
 You end up having two x86-64 targets. To run the simple app from QEMU, type:
