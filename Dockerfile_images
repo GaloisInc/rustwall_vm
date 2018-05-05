@@ -60,5 +60,5 @@ ENV PATH=/root/.cargo/bin:$PATH
 
 # And finally, get our actual repo, configure, and build!
 RUN mkdir /opt/vm && cd /opt/vm && repo init -u https://github.com/GaloisInc/rustwall_vm.git && repo sync
-RUN cd /opt/vm && ./setup_rust_env.sh && make cma34cr_centos_defconfig
+RUN cd /opt/vm && ./setup_rust_env.sh && make clean && make cma34cr_centos_defconfig && make silentoldconfig
 RUN cd /opt/vm && scl enable devtoolset-7 make
