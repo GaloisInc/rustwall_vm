@@ -4,7 +4,7 @@ TOOLCHAIN_VERSION=1.0
 SYSROOT=x86_64-sel4-sysroot.tar.gz
 
 if grep -e CentOS </etc/os-release >/dev/null 2>&1; then
-    COMPILER=rust-centos-x86_64.tar.gz
+    COMPILER=rust-centos-x86_64-std.tar.gz
 else
     COMPILER=rust-ubuntu-x86_64-std.tar.gz
 fi
