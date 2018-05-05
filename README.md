@@ -15,6 +15,8 @@ Initialize Rust environment with:
 ./setup_rust_env.sh
 ```
 
+**NOTE:** If you are using a rust component with a build script (typically `build.rs` and `build=...` in `Cargo.tomhl`), use the experimental script `./setup_rust_env_with_std_build.sh`
+
 and then you can build an image with firewall for CMA34CR with:
 
 ```
