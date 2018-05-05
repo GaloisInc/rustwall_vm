@@ -33,4 +33,9 @@ ENV RUST_TARGET_PATH=/opt/targets
 RUN cd /opt/rust && ./x.py build --target=$TGT
 
 # fetch the rlibs needed to assemble the sysroots into a single tarball
-RUN cd /opt/rust/build/x86_64-unknown-linux-gnu && tar -cf /opt/rust-centos-x86-64.tar.gz stage2
+RUN cd /opt/rust/build/x86_64-unknown-linux-gnu/stage2/ && \
+    tar -cf /opt/x86_64-sel4-sysroot.tar.gz lib/rustlib/$TGT/lib/*.rlib
+
+# and grab the compiler needed
+RUN cd /opt/rust/build/x86_64-unknown-linux-gnu/stage2/ && \
+tar -cf /opt/rust-ubuntu-x86_64.tar.gz bin/* lib/*.so lib/rustlib/x86_64-unknown-linux-gnu/codegen-backends/*.so
