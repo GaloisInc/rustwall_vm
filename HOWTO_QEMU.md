@@ -92,7 +92,12 @@ $ dmesg|grep IOMMU
 ```
 make clean; make cma34cr_centos_defconfig; make silentoldconfig; make;
 ```
-2. Run the qemu from the build directory:
+2. Run the qemu from the build directory (x86_64):
 ```
 qemu-system-x86_64 -m 1024 -cpu Nehalem,+vmx,+fsgsbase -serial /dev/stdout -vga std -netdev tap,id=t0,ifname=tap0,script=no,downscript=no -device e1000,netdev=t0,id=nic0 --enable-kvm -smp 2 -kernel images/kernel-x86_64-pc99 -initrd images/capdl-loader-experimental-image-x86_64-pc99 -device intel-iommu,intremap=on,caching-mode=on -machine q35,kernel-irqchip=split
+```
+or for 32-bit targets (no IOMMU):
+
+```
+qemu-system-i386 -m 1024 -cpu Nehalem,+vmx,+fsgsbase -serial /dev/stdout -vga std -netdev tap,id=t0,ifname=tap0,script=no,downscript=no -device e1000,netdev=t0,id=nic0 --enable-kvm -smp 2 -kernel images/kernel-ia32-pc99 -initrd images/capdl-loader-experimental-image-ia32-pc99  -machine q35
 ```
