@@ -1,6 +1,6 @@
 #!/bin/bash -e
 
-TOOLCHAIN_VERSION=1.0
+TOOLCHAIN_VERSION=1.2
 SYSROOT=x86_64-sel4-sysroot.tar.gz
 
 if grep -e CentOS </etc/os-release >/dev/null 2>&1; then
