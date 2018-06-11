@@ -85,14 +85,33 @@ step. (The `docker create` command runs an image to create a
 container, and then `docker cp` grabs a file from the container and
 puts it on the file system.)
 
-## Rust and std
-In general, memory allocation seems to work, anything above that probably doesn't.
+
+## Debugging
+Initialize repo with:
+```
+
+repo init -u https://github.com/GaloisInc/rustwall_vm -m debug.xml
+```
+
+and build the CMA34 app:
+
+```
+make clean; make cma34cr_centos_defconfig; make silentoldconfig; make;
+```
+
+
+## Rust and seL4
 
 What was tested and works:
 - `std::Box`
 - `std::vec`
+- `std::Arc`
+- `smoltcp` with `alloc`
+- `lazy_staic!` crate
+- `spin` crate
+- `println_sel4` which is a wrapper around `prinf()` and can be used instead of `println!()`
+- custom Mutex (note that `std::sync::Mutex` does not work
 
-What doesn't work:
-- `println` and similar: some kind of a wrapper around seL4's `printf()` is needed, maybe using compatibility crate
-- `std::thread`: has to spawn seL4 threads or something like that
-- `std::sync::Mutex`: might have to be backed by seL4 primitives
+What does not and will not work:
+- threads (besides those provided by Camkes)
+
