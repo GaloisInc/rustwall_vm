@@ -39,10 +39,10 @@ Then select `simple` app:
 make clean; make x86_simple_defconfig; make silentoldconfig; make;
 ```
 
-You end up having two x86-64 targets. To run the simple app from QEMU, type:
+This simple app uses IOMMU and hence you need qemu 2.12 and a host computer that supports virtualization. Please refer to [HOWTO_QEMU](https://github.com/GaloisInc/rustwall_vm/blob/master/HOWTO_QEMU.md) for instructions. To run the simple app from QEMU, type:
 
 ```
-qemu-system-x86_64 -m 512 -kernel images/kernel-x86_64-pc99 -initrd images/capdl-loader-experimental-image-x86_64-pc99 --enable-kvm -smp 2 -cpu Nehalem,+vmx -nographic
+qemu-system-x86_64 -m 1024 -cpu Nehalem,+vmx,+fsgsbase -serial /dev/stdout -vga std -netdev tap,id=t0,ifname=tap0,script=no,downscript=no -device e1000e,netdev=t0,id=nic0 --enable-kvm -smp 2 -kernel images/kernel-x86_64-pc99 -initrd images/capdl-loader-experimental-image-x86_64-pc99 -device intel-iommu,intremap=on,caching-mode=on -machine q35,kernel-irqchip=split -nographic
 ```
 
 and you should see:
