@@ -63,7 +63,7 @@
   </project>
 
   <!-- replace libc in Ruswall's Cargo.toml -->
-  <project remote="galois" name="rustwall.git" path="projects/vm/components/Firewall/rustwall" revision="firewall_simple" />
+  <project remote="galois" name="rustwall.git" path="projects/vm/components/Firewall/rustwall" revision="firewall" />
   
   <!--
       NO CHANGES BELOW
