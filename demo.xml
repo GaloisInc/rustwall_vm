@@ -1,0 +1,126 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+     Copyright 2018, Data61
+     Commonwealth Scientific and Industrial Research Organisation (CSIRO)
+     ABN 41 687 119 230.
+
+     This software may be distributed and modified according to the terms of
+     the BSD 2-Clause license. Note that NO WARRANTY is provided.
+     See "LICENSE_BSD2.txt" for details.
+
+     @TAG(DATA61_BSD)
+-->
+<manifest>
+  <!-- fetch is the path relative to the manifest repo path to get other repositories from -->
+  <remote name="seL4" fetch="https://github.com/seL4"  />
+  <remote name="galois" fetch="https://github.com/GaloisInc" />
+  <remote name="SEL4PROJ"  fetch="https://github.com/SEL4PROJ"  />
+
+  <!-- default revision for each project, and name of the remote -->
+  <default revision="master" remote="seL4"/>
+
+  <!-- this is needed for Camkes Rust generation -->
+  <project remote="galois" name="camkes-tool.git" path="tools/camkes" revision="rust">
+    <linkfile dest="Makefile" src="toplevel.mk"/>
+    <linkfile dest="Kbuild" src="Kbuild"/>
+    <linkfile dest="libs/libsel4camkes" src="libsel4camkes"/>
+    <linkfile dest="libs/libsel4muslccamkes" src="libsel4muslccamkes"/>
+    <linkfile dest="README.md" src="docs/index.md"/>
+  </project>
+
+  <!-- this is needed for setting up the rust environment -->
+  <project remote="galois" name="rustwall_vm.git" path="projects/misc" revision="master">
+    <linkfile dest="setup_rust_env.sh" src="setup_rust_env.sh"/>
+  </project>
+
+  <!-- swap C firewall for its Rust version -->
+  <project remote="galois" name="camkes-vm.git" path="projects/vm"  revision="rust">
+    <linkfile dest="Kconfig" src="Kconfig"/>
+    <linkfile dest="configs" src="configs"/>
+    <linkfile dest="libs/libsel4cxx" src="libsel4cxx"/>
+    <linkfile dest="libs/liblwip" src="liblwip"/>
+    <linkfile dest="tools/elf" src="tools/elf"/>
+    <linkfile dest="apps/vm" src="apps/vm"/>
+    <linkfile dest="apps/c162_twovm" src="apps/c162_twovm"/>
+    <linkfile dest="apps/optiplex9020_onevm" src="apps/optiplex9020_onevm"/>
+    <linkfile dest="apps/cma34cr_minimal" src="apps/cma34cr_minimal"/>
+    <linkfile dest="apps/cma34cr_singlevm" src="apps/cma34cr_singlevm"/>
+    <linkfile dest="apps/cma34cr_twovm" src="apps/cma34cr_twovm"/>
+    <linkfile dest="apps/cma34cr_ubuntu" src="apps/cma34cr_ubuntu"/>
+    <linkfile dest="apps/cma34cr_centos" src="apps/cma34cr_centos"/>
+    <linkfile dest="apps/cma34cr_vchan" src="apps/cma34cr_vchan"/>
+    <linkfile dest="apps/simple" src="apps/simple"/>
+    <linkfile dest="apps/cma34cr_picotcp" src="apps/cma34cr_picotcp"/>
+    <linkfile dest="README.md" src="README.md"/>
+    <linkfile dest="projects/vm/liblwip/include/lwip/lwipopts.h" src="lwipopts.h"/>
+  </project>
+
+  <!-- this is needed to properly tell Cargo what to do -->
+  <project remote="galois" name="seL4_tools.git" path="projects/seL4_tools" revision="rust">
+    <linkfile dest="tools/common" src="common-tool"/>
+    <linkfile dest="tools/elfloader" src="elfloader-tool"/>
+    <linkfile dest="tools/kbuild" src="kbuild-tool"/>
+  </project>
+
+  <!-- replace libc in Ruswall's Cargo.toml -->
+  <project remote="galois" name="rustwall.git" path="projects/vm/components/Firewall/rustwall" revision="firewall_backup_6-18" />
+  
+  <!--
+      NO CHANGES BELOW
+  -->
+  <!-- no change -->
+  <project name="capdl.git" path="projects/capdl" revision="9608a16b87fe9310c4dd58c1e8d7d8d40d6857e5" upstream="master">
+    <linkfile dest="apps/capdl-loader-experimental" src="capdl-loader-app"/>
+    <linkfile dest="tools/capDL" src="capDL-tool"/>
+    <linkfile dest="tools/python-capdl" src="python-capdl-tool"/>
+  </project>
+
+  <!-- no change -->
+ <project name="global-components.git" path="projects/global-components" remote="SEL4PROJ" revision="8e2ef7eac3e83585888013ab57c44a1b1620a641" upstream="master"/>
+
+  <!-- no change -->
+ <project name="musllibc.git" path="libs/libmuslc" revision="f58dacf44a679a2d7c10fbb8d8bc8f58e2123791" upstream="sel4"/>
+
+  <!-- no change -->
+ <project name="picotcp.git" path="projects/picotcp" remote="SEL4PROJ" revision="7f12f2949f44b1de04e9d89407642a9efee878c6" upstream="master">
+    <linkfile dest="libs/libpicotcp/modules" src="modules"/>
+    <linkfile dest="libs/libpicotcp/stack" src="stack"/>
+    <linkfile dest="libs/libpicotcp/include" src="include"/>
+  </project>
+
+  <!-- no change -->
+  <project name="seL4.git" path="kernel" revision="7b4a42c427d12f42b3c35e203c28f9f9ac1271df" upstream="master">
+    <linkfile dest="libs/libsel4" src="libsel4"/>
+  </project>
+
+  <!-- no change -->
+  <project name="seL4_libs" path="projects/seL4_libs" revision="494cd46c8497f50036b5e517720e1604affe6b10" upstream="master">
+    <linkfile dest="libs/libsel4allocman" src="libsel4allocman"/>
+    <linkfile dest="libs/libsel4bench" src="libsel4bench"/>
+    <linkfile dest="libs/libsel4debug" src="libsel4debug"/>
+    <linkfile dest="libs/libsel4muslcsys" src="libsel4muslcsys"/>
+    <linkfile dest="libs/libsel4platsupport" src="libsel4platsupport"/>
+    <linkfile dest="libs/libsel4simple" src="libsel4simple"/>
+    <linkfile dest="libs/libsel4simple-stable" src="libsel4simple-stable"/>
+    <linkfile dest="libs/libsel4simple-default" src="libsel4simple-default"/>
+    <linkfile dest="libs/libsel4sync" src="libsel4sync"/>
+    <linkfile dest="libs/libsel4utils" src="libsel4utils"/>
+    <linkfile dest="libs/libsel4vka" src="libsel4vka"/>
+    <linkfile dest="libs/libsel4vmm" src="libsel4vmm"/>
+    <linkfile dest="libs/libsel4vspace" src="libsel4vspace"/>
+  </project>
+
+  <!-- no change -->
+  <project name="util_libs.git" path="projects/util_libs" revision="f667cfa2f8aae95db65a991ba7dfedf75cb6e46e" upstream="master">
+    <linkfile dest="libs/libcpio" src="libcpio"/>
+    <linkfile dest="libs/libelf" src="libelf"/>
+    <linkfile dest="libs/libethdrivers" src="libethdrivers"/>
+    <linkfile dest="libs/libpci" src="libpci"/>
+    <linkfile dest="libs/libplatsupport" src="libplatsupport"/>
+    <linkfile dest="libs/libutils" src="libutils"/>
+    <linkfile dest="libs/libpicotcp/Kbuild" src="libpicotcp/Kbuild"/>
+    <linkfile dest="libs/libpicotcp/Kconfig" src="libpicotcp/Kconfig"/>
+    <linkfile dest="libs/libpicotcp/Makefile" src="libpicotcp/Makefile"/>
+    <linkfile dest="libs/libpicotcp/pico_defines.h" src="libpicotcp/picoopts.h"/>
+  </project>
+</manifest>
